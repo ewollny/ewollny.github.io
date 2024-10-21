@@ -39,4 +39,3 @@ async function fetchPitchData() {
 
 // Fetch the pitch data when the page loads
 window.onload = fetchPitchData;
-</script>
