@@ -1,10 +1,24 @@
-function fliterData() { 
- event.preventDefault();
- var startdate = document.getElementById("startdate").value; 
- var enddate = document.getElementById("enddate").value; 
- console.log(startdate);
- console.log(enddate);
+function filterData() {
+    event.preventDefault();
+    
+    var startdate = new Date(document.getElementById("startdate").value);
+    var enddate = new Date(document.getElementById("enddate").value);
+    
+    var table = document.getElementById("pitchTable");
+    var rows = table.getElementsByTagName("tr");
+
+    for (var i = 1; i < rows.length; i++) { // Start at 1 to skip the header row
+        var dateCell = rows[i].getElementsByTagName("td")[1]; // Date is the second column
+        var rowDate = new Date(dateCell.textContent);
+
+        if (rowDate >= startdate && rowDate <= enddate) {
+            rows[i].style.display = ""; // Show row
+        } else {
+            rows[i].style.display = "none"; // Hide row
+        }
+    }
 }
+
 
 async function fetchPitchData() {
     try {
